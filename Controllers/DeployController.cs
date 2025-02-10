@@ -43,7 +43,7 @@ namespace YourApp.Controllers
                 return BadRequest("GitHub token is missing.");
             }
 
-            var success = await TriggerGitHubPipeline("your_github_owner", "your_repo_name", branch, token);
+            var success = await TriggerGitHubPipeline("Sharnitha", "dotnetapp", branch, token);
 
             if (success)
             {
@@ -74,10 +74,11 @@ namespace YourApp.Controllers
         // Trigger GitHub Actions pipeline (workflow)
         private async Task<bool> TriggerGitHubPipeline(string owner, string repo, string branch, string token)
         {
-            var url = $"https://api.github.com/repos/{owner}/{repo}/actions/workflows/dotnet.yml/dispatches";
+            var url = $"https://api.github.com/repos/{owner}/{repo}/actions/workflows/your_workflow_file.yml/dispatches";
+            
             var requestBody = new
             {
-                ref = branch
+                @ref = branch  // Corrected the property name to avoid 'ref' keyword conflict
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(requestBody));
