@@ -1,0 +1,17 @@
+name: Frontend-CI
+
+on:
+  workflow_dispatch:
+  push: 
+    branches:   
+      - feature/test 
+        
+jobs:   
+  set_environment:    
+    runs-on: self-hosted 
+    # needs: demo 
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: listing
+        run: ls
