@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration; // Add this for IConfiguration
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -36,8 +36,8 @@ namespace YourApp.Controllers
                 return BadRequest("Branch is required.");
             }
 
-            // Retrieve the GitHub token securely from appsettings.json
-            var token = _configuration["GitHub:Token"]; // Access token from appsettings
+            // Retrieve the GitHub token from environment variable
+            var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Fetch token from environment
             if (string.IsNullOrEmpty(token))
             {
                 return BadRequest("GitHub token is missing.");
