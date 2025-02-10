@@ -37,7 +37,7 @@ namespace YourApp.Controllers
             }
 
             // Retrieve the GitHub token from environment variable
-            var token = Environment.GetEnvironmentVariable("GITHUB_TOKEN"); // Fetch token from environment
+            var token = Environment.GetEnvironmentVariable("GITTOKEN"); // Fetch token from environment
             if (string.IsNullOrEmpty(token))
             {
                 return BadRequest("GitHub token is missing.");
