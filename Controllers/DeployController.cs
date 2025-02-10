@@ -74,7 +74,7 @@ namespace YourApp.Controllers
         // Trigger GitHub Actions pipeline (workflow)
         private async Task<bool> TriggerGitHubPipeline(string owner, string repo, string branch, string token)
         {
-            var url = $"https://api.github.com/repos/{owner}/{repo}/actions/workflows/your_workflow_file.yml/dispatches";
+            var url = $"https://api.github.com/repos/{owner}/{repo}/actions/workflows/dotnet.yml/dispatches";
             var requestBody = new
             {
                 ref = branch
