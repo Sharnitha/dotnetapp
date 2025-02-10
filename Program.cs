@@ -4,7 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient<GitHubService>(); // Add your GitHub service
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration); // Add IConfiguration to DI container
+
+// Load configuration from environment variables
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 var app = builder.Build();
 
