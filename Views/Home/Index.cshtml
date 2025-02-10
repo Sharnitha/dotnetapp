@@ -1,38 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploy Application</title>
-    <script>
-        async function triggerDeploy() {
-            const branch = document.getElementById("branchSelect").value;
+<h1>Select GitHub Branch</h1>
 
-            const response = await fetch('/api/deploy/trigger-deploy', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ branch: branch }), // Send selected branch to the backend
-            });
-
-            if (response.ok) {
-                alert("Deployment triggered successfully!");
-            } else {
-                alert("Failed to trigger deployment.");
-            }
+<form id="deployForm">
+    <label for="branch">Select Branch: </label>
+    <select id="branch" name="branch">
+        <option value="">Select Branch</option>
+        @foreach (var branch in ViewData["Branches"] as List<string>)
+        {
+            <option value="@branch">@branch</option>
         }
-    </script>
-</head>
-<body>
-    <h1>Deploy .NET MVC Application</h1>
-
-    <label for="branchSelect">Select Branch:</label>
-    <select id="branchSelect">
-        <option value="main">Main</option>
-        <option value="staging">Staging</option>
     </select>
 
-    <button onclick="triggerDeploy()">Deploy</button>
-</body>
-</html>
+    <button type="submit">Run Pipeline</button>
+</form>
+
+@section Scripts {
+    <script src="~/js/site.js"></script>
+}
